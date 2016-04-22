@@ -1,6 +1,7 @@
 package id.kido1611.drawerwithrecyclerview.model;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,10 +40,28 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
         return holder;
     }
 
+    int selection_position = 0;
+
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
         NavDrawerItem current = data.get(position);
         holder.title.setText(current.getTitle());
+
+        if(selection_position==position){
+            holder.itemView.setBackgroundResource(R.color.colorPrimary);
+            holder.title.setTextColor(Color.WHITE);
+        }else{
+            holder.itemView.setBackgroundColor(Color.TRANSPARENT);
+        }
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                notifyItemChanged(selection_position);
+                selection_position = position;
+                notifyItemChanged(selection_position);
+            }
+        });
     }
 
     @Override
