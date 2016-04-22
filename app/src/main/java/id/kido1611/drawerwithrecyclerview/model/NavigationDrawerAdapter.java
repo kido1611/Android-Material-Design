@@ -49,7 +49,7 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
 
         if(selection_position==position){
             holder.itemView.setBackgroundResource(R.color.colorPrimary);
-            holder.title.setTextColor(Color.WHITE);
+            holder.title.setTextColor(context.getResources().getColor(R.color.textColorPrimary));
         }else{
             holder.itemView.setBackgroundColor(Color.TRANSPARENT);
         }
