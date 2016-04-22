@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DrawerWithRecyclerView</string>
+    <string name="app_name">Android Material Design</string>
 
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
@@ -20,5 +20,10 @@
         <item>@string/nav_item_groups</item>
         <item>@string/nav_item_pages</item>
     </string-array>
+
+    <string name="tab_item_one">One</string>
+    <string name="tab_item_two">Two</string>
+    <string name="tab_item_three">Three</string>
+    <string name="tab_item_four">Four</string>
 
 </resources>

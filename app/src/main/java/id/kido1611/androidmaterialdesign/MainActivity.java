@@ -1,4 +1,4 @@
-package id.kido1611.drawerwithrecyclerview;
+package id.kido1611.androidmaterialdesign;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -9,9 +9,10 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import id.kido1611.drawerwithrecyclerview.fragment.FragmentDrawer;
-import id.kido1611.drawerwithrecyclerview.fragment.PageFragment;
-import id.kido1611.drawerwithrecyclerview.model.NavDrawerItem;
+import id.kido1611.androidmaterialdesign.fragment.FragmentDrawer;
+import id.kido1611.androidmaterialdesign.fragment.FragmentTab;
+import id.kido1611.androidmaterialdesign.fragment.PageFragment;
+import id.kido1611.androidmaterialdesign.model.NavDrawerItem;
 
 public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener{
 
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         drawerFragment = (FragmentDrawer)getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout)findViewById(R.id.drawer_layout), mToolbar);
         drawerFragment.setDrawerListener(this);
-        displayView(0, new NavDrawerItem(getString(R.string.nav_item_home)));
+        displayView(0, new NavDrawerItem(getString(R.string.nav_item_home), new FragmentTab()));
     }
 
     @Override
@@ -42,7 +43,10 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         String title = getString(R.string.app_name);
 
         if(!item.isSeparator()){
-            fragment = PageFragment.newInstance(item.getTitle());
+            fragment = item.getFragment();
+            if(fragment==null){
+                fragment = PageFragment.newInstance(item.getTitle());
+            }
             title = item.getTitle();
         }
 

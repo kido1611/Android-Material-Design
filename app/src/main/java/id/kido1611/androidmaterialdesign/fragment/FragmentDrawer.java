@@ -1,4 +1,4 @@
-package id.kido1611.drawerwithrecyclerview.fragment;
+package id.kido1611.androidmaterialdesign.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -17,9 +17,9 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import id.kido1611.drawerwithrecyclerview.R;
-import id.kido1611.drawerwithrecyclerview.model.NavDrawerItem;
-import id.kido1611.drawerwithrecyclerview.model.NavigationDrawerAdapter;
+import id.kido1611.androidmaterialdesign.R;
+import id.kido1611.androidmaterialdesign.model.NavDrawerItem;
+import id.kido1611.androidmaterialdesign.model.NavigationDrawerAdapter;
 
 /**
  * Created by Kido1611 on 22-Apr-16.
@@ -56,6 +56,9 @@ public class FragmentDrawer extends Fragment {
 
             NavDrawerItem navItem = new NavDrawerItem();
             navItem.setTitle(titles[i]);
+            if(i==0){
+                navItem.setFragment(new FragmentTab());
+            }
             data.add(navItem);
 
         }

@@ -1,4 +1,4 @@
-package id.kido1611.drawerwithrecyclerview.model;
+package id.kido1611.androidmaterialdesign.model;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -11,7 +11,7 @@ import android.widget.TextView;
 import java.util.Collections;
 import java.util.List;
 
-import id.kido1611.drawerwithrecyclerview.R;
+import id.kido1611.androidmaterialdesign.R;
 
 /**
  * Created by Kido1611 on 22-Apr-16.

@@ -1,4 +1,4 @@
-package id.kido1611.drawerwithrecyclerview.fragment;
+package id.kido1611.androidmaterialdesign.fragment;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -8,24 +8,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import id.kido1611.drawerwithrecyclerview.R;
+import id.kido1611.androidmaterialdesign.R;
 
 /**
  * Created by Kido1611 on 22-Apr-16.
  */
-public class PageFragment extends Fragment {
+public class TabFragment extends Fragment {
 
     public static final String KEY_TITLE_FRAGMENT = "title";
 
-    public static PageFragment newInstance(String title){
-        PageFragment mFragment = new PageFragment();
+    public static TabFragment newInstance(String title){
+        TabFragment mFragment = new TabFragment();
         Bundle mBundle = new Bundle();
         mBundle.putString(KEY_TITLE_FRAGMENT, title );
         mFragment.setArguments(mBundle);
         return mFragment;
     }
 
-    public PageFragment() {
+    public TabFragment() {
         // Required empty public constructor
     }
 
@@ -38,7 +38,7 @@ public class PageFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_page, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_tab_page, container, false);
         ((TextView)rootView.findViewById(R.id.label)).setText(getArguments().getString(KEY_TITLE_FRAGMENT));
 
         // Inflate the layout for this fragment
