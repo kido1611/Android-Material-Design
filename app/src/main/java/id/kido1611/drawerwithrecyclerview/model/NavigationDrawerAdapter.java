@@ -47,21 +47,30 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
         NavDrawerItem current = data.get(position);
         holder.title.setText(current.getTitle());
 
-        if(selection_position==position){
-            holder.itemView.setBackgroundResource(R.color.colorPrimary);
-            holder.title.setTextColor(context.getResources().getColor(R.color.textColorPrimary));
-        }else{
+        if(current.isSeparator()){
+            holder.separator.setVisibility(View.VISIBLE);
+            holder.title.setVisibility(View.GONE);
             holder.itemView.setBackgroundColor(Color.TRANSPARENT);
-        }
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                notifyItemChanged(selection_position);
-                selection_position = position;
-                notifyItemChanged(selection_position);
+        }else{
+            holder.separator.setVisibility(View.GONE);
+            holder.title.setVisibility(View.VISIBLE);
+            if(selection_position==position){
+                holder.itemView.setBackgroundResource(R.color.colorPrimary);
+                holder.title.setTextColor(context.getResources().getColor(R.color.textColorPrimary));
+            }else{
+                holder.itemView.setBackgroundColor(Color.TRANSPARENT);
+                holder.title.setTextColor(Color.BLACK);
             }
-        });
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    notifyItemChanged(selection_position);
+                    selection_position = position;
+                    notifyItemChanged(selection_position);
+                }
+            });
+        }
     }
 
     @Override
@@ -71,10 +80,12 @@ public class NavigationDrawerAdapter extends RecyclerView.Adapter<NavigationDraw
 
     class MyViewHolder extends RecyclerView.ViewHolder {
         TextView title;
+        View separator;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             title = (TextView) itemView.findViewById(R.id.title);
+            separator = itemView.findViewById(R.id.separator);
         }
     }
 }

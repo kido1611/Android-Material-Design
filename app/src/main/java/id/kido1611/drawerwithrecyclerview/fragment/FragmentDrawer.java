@@ -49,9 +49,15 @@ public class FragmentDrawer extends Fragment {
 
         // preparing navigation drawer items
         for (int i = 0; i < titles.length; i++) {
+            if(i%2==0 && i!=0){
+                NavDrawerItem navSeparator = new NavDrawerItem(true);
+                data.add(navSeparator);
+            }
+
             NavDrawerItem navItem = new NavDrawerItem();
             navItem.setTitle(titles[i]);
             data.add(navItem);
+
         }
         return data;
     }
@@ -77,7 +83,7 @@ public class FragmentDrawer extends Fragment {
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), recyclerView, new ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                drawerListener.onDrawerItemSelected(view, position);
+                drawerListener.onDrawerItemSelected(view, position, getData().get(position));
                 mDrawerLayout.closeDrawer(containerView);
             }
 
@@ -176,6 +182,6 @@ public class FragmentDrawer extends Fragment {
     }
 
     public interface FragmentDrawerListener {
-        public void onDrawerItemSelected(View view, int position);
+        public void onDrawerItemSelected(View view, int position, NavDrawerItem item);
     }
 }

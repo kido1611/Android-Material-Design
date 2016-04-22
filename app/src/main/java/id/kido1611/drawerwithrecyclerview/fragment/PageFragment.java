@@ -6,14 +6,26 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import id.kido1611.drawerwithrecyclerview.R;
 
 /**
  * Created by Kido1611 on 22-Apr-16.
  */
-public class FriendFragment extends Fragment {
-    public FriendFragment() {
+public class PageFragment extends Fragment {
+
+    public static final String KEY_TITLE_FRAGMENT = "title";
+
+    public static PageFragment newInstance(String title){
+        PageFragment mFragment = new PageFragment();
+        Bundle mBundle = new Bundle();
+        mBundle.putString(KEY_TITLE_FRAGMENT, title );
+        mFragment.setArguments(mBundle);
+        return mFragment;
+    }
+
+    public PageFragment() {
         // Required empty public constructor
     }
 
@@ -26,8 +38,8 @@ public class FriendFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_friend, container, false);
-
+        View rootView = inflater.inflate(R.layout.fragment_page, container, false);
+        ((TextView)rootView.findViewById(R.id.label)).setText(getArguments().getString(KEY_TITLE_FRAGMENT));
 
         // Inflate the layout for this fragment
         return rootView;

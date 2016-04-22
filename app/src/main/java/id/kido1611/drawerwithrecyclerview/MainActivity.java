@@ -10,9 +10,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import id.kido1611.drawerwithrecyclerview.fragment.FragmentDrawer;
-import id.kido1611.drawerwithrecyclerview.fragment.FriendFragment;
-import id.kido1611.drawerwithrecyclerview.fragment.HomeFragment;
-import id.kido1611.drawerwithrecyclerview.fragment.MessageFragment;
+import id.kido1611.drawerwithrecyclerview.fragment.PageFragment;
+import id.kido1611.drawerwithrecyclerview.model.NavDrawerItem;
 
 public class MainActivity extends AppCompatActivity implements FragmentDrawer.FragmentDrawerListener{
 
@@ -30,32 +29,21 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         drawerFragment = (FragmentDrawer)getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout)findViewById(R.id.drawer_layout), mToolbar);
         drawerFragment.setDrawerListener(this);
-        displayView(0);
+        displayView(0, new NavDrawerItem(getString(R.string.nav_item_home)));
     }
 
     @Override
-    public void onDrawerItemSelected(View view, int position) {
-        displayView(position);
+    public void onDrawerItemSelected(View view, int position, NavDrawerItem item) {
+        displayView(position, item);
     }
 
-    private void displayView(int position){
+    private void displayView(int position, NavDrawerItem item){
         Fragment fragment = null;
         String title = getString(R.string.app_name);
-        switch (position) {
-            case 0:
-                fragment = new HomeFragment();
-                title = getString(R.string.title_home);
-                break;
-            case 1:
-                fragment = new FriendFragment();
-                title = getString(R.string.title_friends);
-                break;
-            case 2:
-                fragment = new MessageFragment();
-                title = getString(R.string.title_messages);
-                break;
-            default:
-                break;
+
+        if(!item.isSeparator()){
+            fragment = PageFragment.newInstance(item.getTitle());
+            title = item.getTitle();
         }
 
         if (fragment != null) {
