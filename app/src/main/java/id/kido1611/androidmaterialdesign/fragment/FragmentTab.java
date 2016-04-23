@@ -21,12 +21,18 @@ import id.kido1611.androidmaterialdesign.R;
  */
 public class FragmentTab extends Fragment {
 
+    public FragmentTab(){
+
+    }
+
     private TabLayout tabLayout;
     private ViewPager viewPager;
 
+    private ViewPagerAdapter adapter;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setupViewPager();
     }
 
     @Nullable
@@ -36,20 +42,20 @@ public class FragmentTab extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_tab, container, false);
 
         viewPager = (ViewPager) rootView.findViewById(R.id.viewpager);
-        setupViewPager(viewPager);
+        viewPager.setAdapter(adapter);
         tabLayout = (TabLayout) rootView.findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
+        adapter.notifyDataSetChanged();
         return rootView;
     }
 
-    private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager());
+    private void setupViewPager() {
+        adapter = new ViewPagerAdapter(getChildFragmentManager());
         adapter.addFragment(TabFragment.newInstance(getString(R.string.tab_item_one)), getString(R.string.tab_item_one));
         adapter.addFragment(new TabTwoFragment(), getString(R.string.tab_item_two));
         adapter.addFragment(TabFragment.newInstance(getString(R.string.tab_item_three)), getString(R.string.tab_item_three));
         adapter.addFragment(TabFragment.newInstance(getString(R.string.tab_item_four)), getString(R.string.tab_item_four));
-        viewPager.setAdapter(adapter);
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
