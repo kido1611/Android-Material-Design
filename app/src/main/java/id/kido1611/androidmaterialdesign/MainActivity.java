@@ -1,5 +1,7 @@
 package id.kido1611.androidmaterialdesign;
 
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -18,6 +20,8 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
 
     private Toolbar mToolbar;
     private FragmentDrawer drawerFragment;
+    private CoordinatorLayout coordinatorLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,10 +31,16 @@ public class MainActivity extends AppCompatActivity implements FragmentDrawer.Fr
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+        coordinatorLayout = (CoordinatorLayout)findViewById(R.id.coordinatorLayout);
         drawerFragment = (FragmentDrawer)getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
         drawerFragment.setUp(R.id.fragment_navigation_drawer, (DrawerLayout)findViewById(R.id.drawer_layout), mToolbar);
         drawerFragment.setDrawerListener(this);
         displayView(0, new NavDrawerItem(getString(R.string.nav_item_home), new FragmentTab()));
+    }
+
+    public void showSnackBar(String message){
+        Snackbar snackbar = Snackbar.make(coordinatorLayout, message, Snackbar.LENGTH_SHORT);
+        snackbar.show();
     }
 
     @Override

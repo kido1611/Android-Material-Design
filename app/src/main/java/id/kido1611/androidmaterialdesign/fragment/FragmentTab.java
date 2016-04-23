@@ -46,7 +46,7 @@ public class FragmentTab extends Fragment {
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager());
         adapter.addFragment(TabFragment.newInstance(getString(R.string.tab_item_one)), getString(R.string.tab_item_one));
-        adapter.addFragment(TabFragment.newInstance(getString(R.string.tab_item_two)), getString(R.string.tab_item_two));
+        adapter.addFragment(new TabTwoFragment(), getString(R.string.tab_item_two));
         adapter.addFragment(TabFragment.newInstance(getString(R.string.tab_item_three)), getString(R.string.tab_item_three));
         adapter.addFragment(TabFragment.newInstance(getString(R.string.tab_item_four)), getString(R.string.tab_item_four));
         viewPager.setAdapter(adapter);
